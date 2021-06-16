@@ -1,0 +1,17 @@
+{
+    "title":"Which country has more people?",
+    "description": "power",
+    "id": "1",
+    "fighters": [
+        {"title":"Itachi Uchiha","background":"https://images5.alphacoders.com/901/901355.jpg","value":1000000},
+        {"title":"Son Goku","background":"https://images5.alphacoders.com/903/903993.png","value":5000000},
+        {"title":"Inuyasha","background":"https://images2.alphacoders.com/139/139522.jpg","value":2000000},
+        {"title":"Eren Jeager","background":"https://images.alphacoders.com/653/653536.jpg","value":2000000},
+        {"title":"Ichigo Kurosaki","background":"https://images6.alphacoders.com/727/727838.png","value":2000000},
+        {"title":"Naruto","background":"https://images3.alphacoders.com/614/614743.png","value":2000000},
+        {"title":"Izuku Midoriya","background":"https://images2.alphacoders.com/923/923599.png","value":2000000},
+        {"title":"Light Yagami","background":"https://images.alphacoders.com/153/153243.jpg","value":2000000},
+        {"title":"Senku Ishigami","background":"https://images.alphacoders.com/102/1022204.jpg","value":2000000},
+        {"title":"Hisoka","background":"https://images7.alphacoders.com/838/838440.png","value":2000000}
+    ]
+}
