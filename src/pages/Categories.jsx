@@ -27,7 +27,7 @@ let backgrounds = [
 
 
     const fetchGames = () => {
-        fetch(`http://localhost:80/server-moreorless/api.game.php`).then(response => response.json()).then((data) => {
+        fetch(`http://moreorles.api.com/games`).then(response => response.json()).then((data) => {
             setGames(data);
             console.log(data);
         }).catch(error=>console.log(error));
