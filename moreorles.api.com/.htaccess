@@ -1,0 +1,6 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteRule ^games/([0-9]+)$ games.php?id=$1
+RewriteRule ^games/$ games.php
+RewriteRule ^games$ games.php
