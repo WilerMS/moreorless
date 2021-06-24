@@ -12,32 +12,31 @@ const Category = ({id_game, name, description, title, background}) => {
         <Container to={link} background={background}>
             <div className="category">
                 <span className="check"><FontAwesomeIcon icon={faPlay} /></span>
-                <p>{name}</p>
+                <div className="name">
+                    <h4>{name}</h4> 
+                    <h5>{description}</h5> 
+                </div>
             </div>
         </Container>
     )
 }
 
 const Container = styled(Link)`
+    text-decoration: none;
     position: relative;
-    //margin: 15px;
     display: inline-block;
     background: white;
     width: 200px;
     height: 250px;
     transition: all .5s ease;
-    border-radius: 40px;
-    text-decoration: none;
+    border-radius: 6px;
     background: url(${props=>props.background});
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    //box-shadow: 1px 1px 10px #0000008f;
     z-index: 3;
 
-    &:hover {
-        transform: scale(1.05);
-    }
+    &:hover {transform: scale(1.05);}
     
     @media (max-width: 700px) {
         & {
@@ -55,13 +54,6 @@ const Container = styled(Link)`
         justify-content: flex-end;
         align-items: center;
 
-        p {
-            color: white;
-            text-shadow: 1px 1px 5px black;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
         span {
             position: absolute;
             height: 100%;
@@ -71,10 +63,17 @@ const Container = styled(Link)`
             align-items: center;
             color: white;
             text-shadow: 1px 1px 5px black;
+        }
 
-            svg {
-                filter: drop-shadow( 1px 1px 10px rgba(0, 0, 0, .7));
-            }
+        .name {
+            background-color: white;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            text-decoration: none;
+            color: black;
         }
     }
 `;

@@ -26,7 +26,7 @@ const Game = () => {
 
     //Fetching fighter from the API
     const fetchFighters = (mode) => {
-        fetch(`http://localhost:80/server-moreorless/api.game.php?id_game=${mode}`).then(response => response.json()).then(({name, description, id_game, fighters}) => {
+        fetch(`http://moreorless.api.com/games/${mode}`).then(response => response.json()).then(({name, description, id_game, fighters}) => {
             setDataMode({description:description, id:id_game, title:name});
             fighters = fighters.sort(function() {return Math.random() - 0.5});
             setFighters(fighters);

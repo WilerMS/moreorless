@@ -6,6 +6,7 @@ import PremiumModeBtn from './../Components/Categories/PremiumModeBtn'
 import BackButton from './../Components/Categories/BackButton'
 import DonateButton from './../Components/Categories/DonateButton'
 import ParticlesJS from './../Components/Particles/Particles'
+import wallpaper from './../Images/wallpaper2.png'
 
 let backgrounds = [
    ' https://images5.alphacoders.com/432/thumb-1920-432096.jpg',
@@ -25,9 +26,8 @@ let backgrounds = [
         fetchGames();
     }, []);
 
-
     const fetchGames = () => {
-        fetch(`http://moreorles.api.com/games`).then(response => response.json()).then((data) => {
+        fetch(`http://moreorless.api.com/games`).then(response => response.json()).then((data) => {
             setGames(data);
             console.log(data);
         }).catch(error=>console.log(error));
@@ -36,8 +36,8 @@ let backgrounds = [
     return (
         <Container>
             {/**<BackButton/>
-            <DonateButton/>*/}
-            <div className="bg_black"></div>
+            <DonateButton/>
+            <div className="bg_black"></div>*/}
             <div className="mode__list">
                 <div className="grid__list">
                     {games.map(({...games}, index)=>{
@@ -61,8 +61,8 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url(${backgrounds[Math.floor(Math.random()*backgrounds.length)]});
-    background: url('https://images2.alphacoders.com/108/1081121.png');
+    //background: url(${backgrounds[Math.floor(Math.random()*backgrounds.length)]});
+    background: url(${wallpaper});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
