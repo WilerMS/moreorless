@@ -10,8 +10,8 @@
             $this->db = new Database();
         }
 
-        public function getFighter($id) {
-            return $this->db->query("SELECT * FROM fighters WHERE id_fighter={$id}"); 
+        public function getFighter($idFigther) {
+            return $this->db->query("SELECT * FROM fighters WHERE id_fighter={$idFigther}"); 
         }
         
         public function getFighters($idGame) {
@@ -35,8 +35,8 @@
         }
 
         //Delete a fighter by id
-        public function delete($id) {
-            $query = "  DELETE FROM games WHERE id_game='{$id}'";
+        public function delete($idFigther) {
+            $query = "  DELETE FROM games WHERE id_game='{$idFigther}'";
             return $this->db->query($query);
         }
 
