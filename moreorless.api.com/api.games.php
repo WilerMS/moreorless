@@ -36,8 +36,8 @@
 
     } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $messages = new array();
-        $errors = new array();
+        $messages = array();
+        $errors = array();
 
         // Creating a new game with given data
         if (isset($_POST['game'])) {
@@ -52,7 +52,7 @@
             
                 foreach ($_POST['game']['fighters'] as $key => $value) {
                     $sql = $fighter->create($value);
-                    if (!$sql) { $errors[] = $value;}
+                    if (!$sql) {$errors[] = $value;}
                 }
 
             $messages['game'] = "¡Genial, se ha creado tu juego correctamente!";
