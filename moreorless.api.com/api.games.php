@@ -64,6 +64,7 @@
         }
 
     } else if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+
         if (isset($_GET['id'])) {
             $sql = $game->delete($_GET['id']);
 
@@ -75,13 +76,30 @@
         }
         header("HTTP/1.1 200 OK");
         echo json_encode("Juego eliminado satisfactoriamente");
-        die();  
+        die(); 
+
     } else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
+        if (isset($_POST['game'])) {
+            //Updating the current fighter id
+            $sql = $game->update($_POST['game']);
+
+            // Error Throw exception
+            if (!$sql) {
+                header("HTTP/1.1 500 ERROR");
+                echo json_encode(["Ha habido un error, pruebe otra vez."]);
+                die();
+            }
+
+        }
+
+        header("HTTP/1.1 200 OK");
+        echo json_encode();
+        die();
         
     }
 
     header("HTTP/1.1 500 ERROR");
-    echo json_encode("Error");
+    echo json_encode(["El peleador se ha editado correctamente."]);
     die();
 ?>

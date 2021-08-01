@@ -30,20 +30,13 @@
         public function update($fighter) {
             $query = "  UPDATE fighters 
                         SET name='{$fighter['name']}', value='{$fighter['value']}', background='{$fighter['background']}'
-                        WHERE id_game='{$fighter['id_game']}'";
+                        WHERE id_fighter='{$fighter['id_fighter']}'";
             return $this->db->query($query);
         }
 
         //Delete a fighter by id
         public function delete($idFigther) {
             $query = "  DELETE FROM games WHERE id_game='{$idFigther}'";
-            return $this->db->query($query);
-        }
-
-        public function createGameFighters($fighter) {
-            $query = "  INSERT INTO games (name, description, title, background) 
-                        VALUES ('{$game['name']}', '{$game['description']}', 
-                                '{$game['title']}', '{$game['background']}')";
             return $this->db->query($query);
         }
 
