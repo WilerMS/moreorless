@@ -1,6 +1,7 @@
 import React from 'react'
 import Game from './pages/Game'
 import Categories from './pages/Categories'
+import Home from './pages/Home'
 
 import './App.css';
 import {BrowserRouter,Route, Switch} from 'react-router-dom';
@@ -10,7 +11,8 @@ const App = () => {
     <>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={Categories}/>
+          <Route path="/" exact component={Home}/>
+          <Route path="/categories" component={Categories}/>
           <Route path="/game/:mode" component={Game}/>
         </Switch>
       </BrowserRouter>
