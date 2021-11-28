@@ -1,57 +1,39 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import Category from './../Components/Categories/Category'
-import MoreGamesBtn from './../Components/Categories/MoreGamesBtn'
-import PremiumModeBtn from './../Components/Categories/PremiumModeBtn'
-import BackButton from './../Components/Categories/BackButton'
-import DonateButton from './../Components/Categories/DonateButton'
-import ParticlesJS from './../Components/Particles/Particles'
-import wallpaper from './../Images/wallpaper2.png'
+import wallpaper from './../Images/bg_home.jpg'
 
-let backgrounds = [
-   ' https://images5.alphacoders.com/432/thumb-1920-432096.jpg',
-    'https://images7.alphacoders.com/718/thumb-1920-718139.jpg',
-    'https://images7.alphacoders.com/113/thumb-1920-1131940.png',
-    'https://images2.alphacoders.com/589/thumb-1920-589399.jpg',
-    'https://images2.alphacoders.com/474/thumb-1920-474157.jpg',
-    'https://images7.alphacoders.com/423/thumb-1920-423137.jpg',
-    'https://images5.alphacoders.com/324/thumb-1920-324853.png',
-    'https://images4.alphacoders.com/207/thumb-1920-207828.jpg'
-];
-
- const Categories = () => {
+const Categories = () => {
 
     const [games, setGames] = useState([]);
-    useEffect(()=>{
-        fetchGames();
-    }, []);
+    useEffect(() => fetchGames(), []);
 
     const fetchGames = () => {
-        fetch(`http://moreorless.api.com/games`).then(response => response.json()).then((data) => {
-            setGames(data);
-            console.log(data);
-        }).catch(error=>console.log(error));
+        fetch(`http://moreorless.api.com/games`)
+            .then(response => response.json())
+                .then((data) => setGames(data))
+                .catch(error=>console.log(error));
     }
 
     return (
         <Container>
-            {/**<BackButton/>
-            <DonateButton/>
-            <div className="bg_black"></div>*/}
+            <div className="bg_dark"></div>
             <div className="mode__list">
                 <div className="grid__list">
-                    {games.map(({...games}, index)=>{
-                        return(<Category key={index} {...games}/> );
-                        })
-                    }
-                    <PremiumModeBtn />
-                    <MoreGamesBtn />
+                    {games.map((game, index)=> <Category key={index} {...game}/>)}
                 </div> 
             </div>
-            <ParticlesJS/>
         </Container>
     )
 }
+
+const animation = keyframes`
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+`;
 
 const Container = styled.div`
     position: relative;
@@ -61,7 +43,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    //background: url(${backgrounds[Math.floor(Math.random()*backgrounds.length)]});
+    backdrop-filter: blur(8px);
     background: url(${wallpaper});
     background-size: cover;
     background-repeat: no-repeat;
@@ -72,18 +54,32 @@ const Container = styled.div`
         font-size: 60px;
         z-index: 3;
     }
-    
+
+    .bg_dark {
+        background-color: #000000c1;
+        backdrop-filter: blur(5px);
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        //opacity: .5;
+    }
 
     .mode__list {
-        height: 53%;
+        max-width: 1250px;
+        width: 70vw;
+        height: 55%;
         overflow-y: auto;
         padding: 30px;
+        animation: ${animation} 2s ease;
+
+        
 
         &::-webkit-scrollbar {
             background: none;
             width: 5px;
-            height: 50%;
         }
+        
         &::-webkit-scrollbar-thumb {
             background: white;
             border-radius: 10px;
@@ -91,18 +87,13 @@ const Container = styled.div`
 
         .grid__list {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
             grid-gap: 30px;
             width: 100%;
             height: 100%;
-
-            @media (max-width: 1420px) {grid-template-columns: repeat(5, 1fr);}
-            @media (max-width: 1190px) {grid-template-columns: repeat(3, 1fr);}
-            @media (max-width: 730px) {grid-template-columns: repeat(2, 1fr);}
         }
 
         @media (max-width: 1420px) {max-width: 100vw;}
-        @media (max-width: 1190px) {max-width: 100vw;}
         @media (max-width: 730px) {
             & {
                 height: 70vh;
@@ -110,18 +101,9 @@ const Container = styled.div`
             }
 
             &::-webkit-scrollbar-thumb {
-                background: none;
-                border-radius: 10px;
+                display: none;
             }
         }
-    }
-
-    .bg_black {
-        position: absolute;
-        width: 100vw;
-        height: 100vh;
-        background: #00000044;
-        z-index: 0;
     }
 `;
 
