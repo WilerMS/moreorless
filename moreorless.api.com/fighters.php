@@ -15,7 +15,11 @@
         }
         
         public function getFighters($idGame) {
-            return $this->db->query("SELECT * FROM fighters  WHERE id_game={$idGame}");   
+            $query = "SELECT f.*, g.description
+                      FROM fighters f
+                      LEFT JOIN games g ON g.id_game=f.id_game
+                      WHERE g.id_game={$idGame};";
+            return $this->db->query($query);
         }
 
         // create one figther
