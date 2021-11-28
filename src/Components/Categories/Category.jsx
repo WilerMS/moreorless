@@ -1,20 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faPlay} from '@fortawesome/free-solid-svg-icons'
 
-const Category = ({id_game, name, description, title, background}) => {
+const Category = ({id_game, name, about, title, background}) => {
 
     const link = `/game/${id_game}`;
 
     return (
-        <Container to={link} background={background}>
-            <div className="category">
-                <span className="check"><FontAwesomeIcon icon={faPlay} /></span>
-                <div className="name">
-                    <h4>{name}</h4> 
-                    <h5>{description}</h5> 
+        <Container to={link}>
+            <img src={background} alt={name} />
+            <div className="info">
+                <div className="title">
+                    <span>{name}</span>
+                </div>
+                <div className="description">
+                    <p>{about}</p>
                 </div>
             </div>
         </Container>
@@ -22,58 +22,54 @@ const Category = ({id_game, name, description, title, background}) => {
 }
 
 const Container = styled(Link)`
-    text-decoration: none;
+    box-shadow: 0px 0px 9px 0px #00000040;
     position: relative;
-    display: inline-block;
-    background: white;
-    width: 200px;
+    width: 100%;
     height: 250px;
     transition: all .5s ease;
-    border-radius: 6px;
-    background: url(${props=>props.background});
-    background-size: cover;
-    background-position: center;
+    border-radius: 5px;
     overflow: hidden;
-    z-index: 3;
 
-    &:hover {transform: scale(1.05);}
-    
-    @media (max-width: 700px) {
-        & {
-            width: 150px;
-            height: 200px; 
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all .5s ease;
+    }
+
+    .info {
+        background: white;
+        bottom: -30%;
+        font-size: 14px;
+        height: calc(50% - 20px);
+        position: absolute;
+        padding: 10px;
+        width: calc(100% - 20px);
+        transition: all .5s ease-out;
+
+        .title {
+            color: black;
+            font-weight: 600;
+        }
+
+        .description {
+            color: #000000ac;
+            font-size: 12px;
+            transition: opacity .6s ease;
+            transition-delay: .4s;
+            opacity: 0;
         }
     }
 
-    .category {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        flex-direction: column;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-
-        span {
-            position: absolute;
-            height: 100%;
-            font-size: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-shadow: 1px 1px 5px black;
-        }
-
-        .name {
-            background-color: white;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: center;
-            text-decoration: none;
-            color: black;
+    &:hover {
+        transform: scale(1.05);
+        img {transform: scale(1.06);}
+        
+        .info {
+            bottom: 0;
+            .description {
+                opacity: 1;
+            }
         }
     }
 `;
