@@ -3,18 +3,10 @@ import styled from 'styled-components'
 
 
 const GuessBox = ({checkComparison}) => {
-
-    const answerMore = (res) => {
-      checkComparison("more");
-    }
-    const answerLess = (res) => {
-      checkComparison("less");
-    }
-
     return (
         <Container>
-            <span onClick={(answerMore)} className="more" id="more">More</span>
-            <span onClick={answerLess} className="less" id="less">Less</span>
+            <span onClick={() => checkComparison("more")} className="more" id="more">MÁS</span>
+            <span onClick={() => checkComparison("less")} className="less" id="less">MENOS</span>
         </Container>
     )
 }
