@@ -26,19 +26,19 @@ const Game = () => {
 
     //Fetching fighter from the API
     const fetchFighters = (mode) => {
-        fetch(`http://moreorless.api.com/games/${mode}`).then(response => response.json()).then(({name, description, id_game, fighters}) => {
-            setDataMode({description:description, id:id_game, title:name});
-            fighters = fighters.sort(function() {return Math.random() - 0.5});
-            setFighters(fighters);
-            setFighter1(fighters[0]);
-            setFighter2(fighters[1]);
-            setFighter3(fighters[2]);
+        fetch(`http://moreorless.api.com/games/${mode}`)
+            .then(response => response.json())
+                .then(({name, description, id_game, fighters}) => {
+                    setDataMode({description:description, id:id_game, title:name});
+                    fighters = fighters.sort(() => Math.random() - 0.5);
+                    setFighters(fighters);
+                    setFighter1(fighters[0]);
+                    setFighter2(fighters[1]);
+                    setFighter3(fighters[2]);
         }).catch(error=>console.log(error));
     }
 
-    useEffect(() => {
-        fetchFighters(mode); // eslint-disable-next-line
-    }, []);
+    useEffect(() => fetchFighters(mode), [mode]);
 
     const gameOver = () => {
         setVsState(2);
@@ -51,7 +51,7 @@ const Game = () => {
         setVsState(1);
         setTimeout(() => {
             setSecondValue(false);
-            (currentFighter<fighters.length-1) ? setCurrentFighter(currentFighter+1) : setCurrentFighter(0);
+            setCurrentFighter((currentFighter<fighters.length-1) ? currentFighter+1 : 0);
             setClassTransition("transition-off");
             setFighter1(fighter2);
             setFighter2(fighter3);
