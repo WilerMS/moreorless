@@ -8,7 +8,7 @@ const Fighter = ({children, second, name, value, background, secondValue, descri
             <div className="bg_black"></div>
             <div className="title">
                 <span className="result_title">{name}</span>
-                <span className="result_has">has</span>
+                <span className="result_has">tiene</span>
                 {   second ? 
                         secondValue ? 
                         (   <>
