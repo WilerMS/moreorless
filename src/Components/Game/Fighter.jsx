@@ -11,16 +11,19 @@ const Fighter = ({children, second, name, value, background, secondValue, descri
                 <span className="result_has">tiene</span>
                 {   second ? 
                         secondValue ? 
+                            (   <>
+                                    <span className="result_views">{new Intl.NumberFormat().format(value)}</span>
+                                    <span className="result_desc">{description && description.toLowerCase()}</span>
+                                </>
+                            ) 
+                        : 
+                        children 
+                    :  
                         (   <>
                                 <span className="result_views">{new Intl.NumberFormat().format(value)}</span>
-                                <span className="result_desc">{description.toLowerCase()}</span>
+                                <span className="result_desc">{description && description.toLowerCase()}</span>
                             </>
-                        ) : children : 
-                    (   <>
-                            <span className="result_views">{new Intl.NumberFormat().format(value)}</span>
-                            <span className="result_desc">{description.toLowerCase()}</span>
-                        </>
-                    )
+                        )
                 }
             </div> 
         </Container>
