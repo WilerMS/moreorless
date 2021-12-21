@@ -14,7 +14,7 @@ const Game = () => {
     let {mode} = useParams();
     const history = useHistory();
 
-    const {fetchFighters, updateFighters, dataMode, fighter1, fighter2, fighter3} = FightersManagements();
+    const {fetchFighters, setCurrentFighter, dataMode, currentFighter, fighters} = FightersManagements();
     const [classTransition, setClassTransition] = useState("transition-off");
     const [secondValue, setSecondValue] = useState(false);
     const [vsState, setVsState] = useState(0);
@@ -24,14 +24,15 @@ const Game = () => {
 
     const checkComparison = (res) => {
         setSecondValue(true);
-        if ((res==="more" && parseInt(fighter1.value) <= parseInt(fighter2.value)) || 
-            (res==="less" && parseInt(fighter1.value) >= parseInt(fighter2.value))) {
+        if ((res==="more" && parseInt(fighters[currentFighter-2].value) <= parseInt(fighters[currentFighter-1].value)) || 
+            (res==="less" && parseInt(fighters[currentFighter-2].value) >= parseInt(fighters[currentFighter-1].value))) {
                 setClassTransition("transition-on");
                 setVsState(1);
                 setTimeout(() => {
                     setSecondValue(false);
                     setClassTransition("transition-off");
-                    updateFighters();
+
+                    setCurrentFighter( (currentFighter<fighters.length-1) ? currentFighter+1 : 2 );
                     setVsState(0);
                     setScore(score+1);
                 }, 1500);
@@ -44,11 +45,11 @@ const Game = () => {
     return (
         <Container className="game">
             <div className={`game-transition ${classTransition}`}>
-                <Fighter {...fighter1}/>
-                <Fighter second secondValue={secondValue} {...fighter2}>
+                <Fighter {...fighters[currentFighter-2]}/>
+                <Fighter second secondValue={secondValue} {...fighters[currentFighter-1]}>
                     <GuessBox checkComparison={checkComparison}/>
                 </Fighter>
-                <Fighter second secondValue={false} {...fighter3}>
+                <Fighter second secondValue={false} {...fighters[currentFighter]}>
                     <GuessBox checkComparison={checkComparison}/>
                 </Fighter>
             </div>
