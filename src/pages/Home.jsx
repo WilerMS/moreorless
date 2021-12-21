@@ -16,10 +16,13 @@ const Home = () => {
                 </div>
                 <div className="options">
                     <Linked to={`/game/1`} className="random">
+                        
+                        <div class="bg_white"></div>
                         <span>ALEATORIO</span>
                     </Linked>
                     <Linked to={'/categories'} className="categories">
                         <span>MÁS JUEGOS</span>
+                        <div class="bg_white"></div>
                     </Linked>
                 </div>
             </div>
@@ -100,6 +103,8 @@ const Container = styled.div`
 `;
 
 const Linked = styled(Link)`
+display: flex;
+justify-content: center;
     text-decoration: none;
     padding: 10px 0;
     transition: all .5s ease;
@@ -107,13 +112,38 @@ const Linked = styled(Link)`
     border: 2px solid white;
     border-radius: 15px;
     width: 30%;
+    height: 30px;
     text-align: center;
     color: white;
-    margin: 5px 0;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 
     &:hover {
         transform: scale(1.1);
+        color: black;
+
+        .bg_white {
+
+            top: 0;
+            opacity: 1;
+
+        }
+    }
+    
+    span {
+        z-index: 99;
+        position: absolute;
+    }
+
+    .bg_white {
+        transition: all .5s ease;
+        position: absolute;
+        background: white;
+        width: 100%;
+        height: 100%;
+        top: 100%;
+        opacity: 0;
     }
 `; 
 
