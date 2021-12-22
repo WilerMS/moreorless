@@ -20,7 +20,8 @@ const Game = () => {
     const [vsState, setVsState] = useState(0);
     const [score, setScore] = useState(0);
 
-    useEffect(() => fetchFighters(mode), [mode]);
+    // eslint-disable-next-line
+    useEffect(() => fetchFighters(mode), [mode]); 
 
     const checkComparison = (res) => {
         setSecondValue(true);

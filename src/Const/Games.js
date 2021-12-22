@@ -468,7 +468,7 @@ const games = [
           id_fighter: "176",
           name: "Burkina Faso",
           value: "20903278",
-          background: "http://loanatravel.com/esp/wp-content/uploads/2016/05/Musée-nationale.jpg",
+          background: "https://scantri.com/wp-content/uploads/gallery/Mali/5.jpg",
           id_game: "1",
           description: "habitantes"
         },
@@ -668,7 +668,7 @@ const games = [
           id_fighter: "201",
           name: "Sudán del Sur",
           value: "11193729",
-          background: "https://images2.alphacoders.com/746/746288.jpg",
+          background: "https://i.pinimg.com/originals/c8/46/a9/c846a92091a8c46cd697c729f5841bca.jpg",
           id_game: "1",
           description: "habitantes"
         },

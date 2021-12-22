@@ -1,20 +1,19 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
-position: relative;
-width: 100%;
-height: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-
-
-@media (max-width: 700px) {
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-}
+
+    @media (max-width: 700px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 
     .game-transition {
         position: absolute;
@@ -25,7 +24,6 @@ align-items: center;
         display: flex;
         justify-content: center;
         align-items: center;
-        
 
         @media (max-width: 700px) {     
             display: flex;
@@ -55,7 +53,6 @@ align-items: center;
             height: 150%;
         }
     }
-
 `;
 
 export {Container};
