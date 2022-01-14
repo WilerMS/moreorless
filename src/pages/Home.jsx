@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import wallpaper from './../Images/bg_home.jpg'
-import logo from './../Images/logo2.png'
+import wallpaper from './../Images/fondo_ibaiquiz.jpg'
+import logo from './../Images/logo_ibaiquiz.png'
 
 const Home = () => {
     return (
         <Container>
-            <div className="bg_dark"></div>
+            {/* <div className="bg_dark"></div> */}
 
             <div className="menu">
                 <div className="logo">
