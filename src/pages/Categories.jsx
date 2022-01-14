@@ -1,26 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled, {keyframes} from 'styled-components'
 import Category from './../Components/Categories/Category'
 import wallpaper from './../Images/bg_home.jpg'
+import gamesInfo from './../Const/Games'
 
 const Categories = () => {
-
-    const [games, setGames] = useState([]);
-    useEffect(() => fetchGames(), []);
-
-    const fetchGames = () => {
-        fetch(`http://moreorless.api.com/games`)
-            .then(response => response.json())
-                .then((data) => setGames(data))
-                .catch(error=>console.log(error));
-    }
 
     return (
         <Container>
             <div className="bg_dark"></div>
             <div className="mode__list">
                 <div className="grid__list">
-                    {games.map((game, index)=> <Category key={index} {...game}/>)}
+                    {gamesInfo.map((game, index)=> <Category key={index} {...game}/>)}
                 </div> 
             </div>
         </Container>

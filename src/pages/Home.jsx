@@ -17,12 +17,12 @@ const Home = () => {
                 <div className="options">
                     <Linked to={`/game/1`} className="random">
                         
-                        <div class="bg_white"></div>
+                        <div className="bg_white"></div>
                         <span>ALEATORIO</span>
                     </Linked>
                     <Linked to={'/categories'} className="categories">
                         <span>MÁS JUEGOS</span>
-                        <div class="bg_white"></div>
+                        <div className="bg_white"></div>
                     </Linked>
                 </div>
             </div>

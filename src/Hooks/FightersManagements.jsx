@@ -1,27 +1,23 @@
 import {useState} from 'react'
+import gamesInfo from './../Const/Games'
 
 const FightersManagements = () => {
 
     const [fighters, setFighters] = useState([]);
     const [dataMode, setDataMode] = useState({description:"", title:"", id:""});
     const [currentFighter, setCurrentFighter] = useState(2);
-    
 
-    //Fetching fighter from the API
     const fetchFighters = (mode) => {
-        fetch(`http://moreorless.api.com/games/${mode}`)
-            .then(response => response.json())
-                .then(({name, description, id_game, fighters}) => {
-                    setDataMode({description:description, id:id_game, title:name});
-                    fighters = fighters.sort(() => Math.random() - 0.5);
-                    setFighters(fighters);
-        }).catch(error=>console.log(error));
+        let currentGame = gamesInfo.filter(({id_game}) => id_game === mode)[0];
+        let {name, description, id_game, fighters} = currentGame;
+        setDataMode({description:description, id:id_game, title:name});
+        fighters = fighters.sort(() => Math.random() - 0.5);
+        setFighters(fighters)
     }
 
     return {
         fighters, fetchFighters, dataMode, currentFighter, setCurrentFighter
     }
 }
-
 
 export default FightersManagements;
