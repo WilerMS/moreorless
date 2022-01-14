@@ -2,18 +2,17 @@
 
      class Database {
 
-		public $host = "localhost";
-		public $user = "root";
-		public $pass = "";
-		public $dbname = "moreorless_db";
-		
+		private $config;
 		private $db;
 		private $error;
 		private $stmt;
 		
 		function __construct() {
+
+			$this->config = json_decode(file_get_contents('config'), true);
+
 			try {
-				$this->db = new PDO("mysql:dbname={$this->dbname};host={$this->host}", $this->user, $this->pass);
+				$this->db = new PDO("mysql:dbname={$this->config['dbname']};host={$this->config['host']}", $this->config['user'], $this->config['pass']);
 				$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				$this->db->exec("set names utf8");
 			}
@@ -29,8 +28,12 @@
 
 		// Prepare statement with query
 		public function query($query) {
-			$this->stmt = $this->db->query($query);
-			return $this->stmt;
+			return $this->db->query($query);
+		}
+
+		// Prepare statement with query
+		public function prepare($query) {
+			return $this->db->prepare($query);
 		}
 		
 		// Execute the prepared statement

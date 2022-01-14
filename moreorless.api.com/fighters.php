@@ -11,23 +11,34 @@
         }
 
         public function getFighter($idFigther) {
-            return $this->db->query("SELECT * FROM fighters WHERE id_fighter={$idFigther}"); 
+            $query = "SELECT * FROM fighters WHERE id_fighter=:id_fighter";
+            $sql = $this->db->prepare($query);
+            $sql->bindParam(":id_fighter", $idFigther);
+            $sql->execute();
+            return $sql;
         }
         
         public function getFighters($idGame) {
-            $query = "SELECT f.*, g.description
-                      FROM fighters f
-                      LEFT JOIN games g ON g.id_game=f.id_game
-                      WHERE g.id_game={$idGame};";
-            return $this->db->query($query);
+            $query = "  SELECT f.*, g.description FROM fighters f
+                        LEFT JOIN games g ON g.id_game=f.id_game
+                        WHERE g.id_game=:id_game;";
+            $sql = $this->db->prepare($query);
+            $sql->bindParam(":id_game", $idGame);
+            $sql->execute();
+            return $sql;
         }
 
         // create one figther
         public function create($fighter) {
             $query = "  INSERT INTO fighters (name, value, id_game, background) 
-                        VALUES ('{$fighter['name']}', '{$fighter['value']}', 
-                                '{$fighter['id_game']}', '{$fighter['background']}')";
-            return $this->db->query($query);
+                        VALUES (:name, :value, :id_game, :background);";
+            $sql = $this->db->prepare($query);
+            $sql->bindParam(":name", $fighter['name']);
+            $sql->bindParam(":value", $fighter['value']);
+            $sql->bindParam(":id_game", $fighter['id_game']);
+            $sql->bindParam(":background", $fighter['background']);
+            $sql->execute();
+            return $sql;
         }
 
         // update a figther by id
