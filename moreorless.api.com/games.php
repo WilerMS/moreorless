@@ -27,7 +27,6 @@
         public function create($game) {
             $query = "  INSERT INTO games (name, description, title, background) 
                         VALUES (:name, :description, :title, :background);";
-
             $sql = $this->db->prepare($query);
             $sql->bindParam(":name", $game['name']);
             $sql->bindParam(":description", $game['description']);
@@ -42,7 +41,6 @@
             $query = "  UPDATE games
                         SET name=:name, description=:description, title=:title, background=:background
                         WHERE id_game=:id_game";
-                        
             $sql = $this->db->prepare($query);
             $sql->bindParam(":name", $game['name']);
             $sql->bindParam(":id_game", $game['id_game']);
@@ -55,8 +53,11 @@
 
         // Delete a game by id
         public function delete($id) {
-            $query = "  DELETE FROM games WHERE id_game='{$id}'";
-            return $this->db->query($query);
+            $query = "DELETE FROM games WHERE id_game=:id_game";
+            $sql = $this->db->prepare($query);
+            $sql->bindParam(":id_game", $id);
+            $sql->execute();
+            return $sql;
         }
 
     }
