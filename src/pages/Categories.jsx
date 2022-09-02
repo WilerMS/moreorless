@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, {keyframes} from 'styled-components'
 import Category from './../Components/Categories/Category'
-import wallpaper from './../Images/bg_home.jpg'
+import wallpaper from './../Images/wallpaper.png'
 import gamesInfo from './../Const/Games'
 
 const Categories = () => {

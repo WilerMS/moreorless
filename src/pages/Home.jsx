@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import wallpaper from './../Images/bg_home.jpg'
+import wallpaper from './../Images/wallpaper2.png'
 import Linked from './../Components/Button'
-import logo from './../Images/logo2.png'
+import logo from './../Images/logo_bw.png'
 
 const Home = () => {
     return (
@@ -89,9 +89,6 @@ const Container = styled.div`
             gap: 20px;
         }
     }
-
-    
-
     
 `;
 
