@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 import useFightersManagements from '../Hooks/useFightersManagements'
 import {
@@ -15,35 +15,35 @@ import {
 
 const Game = () => {
 
-    let { mode } = useParams();
-    const history = useHistory();
+    let { mode } = useParams()
+    const history = useHistory()
 
-    const { fetchFighters, setCurrentFighter, dataMode, currentFighter, fighters } = useFightersManagements();
-    const [classTransition, setClassTransition] = useState("transition-off");
-    const [secondValue, setSecondValue] = useState(false);
-    const [vsState, setVsState] = useState(0);
-    const [score, setScore] = useState(0);
+    const { fetchFighters, setCurrentFighter, dataMode, currentFighter, fighters } = useFightersManagements()
+    const [classTransition, setClassTransition] = useState("transition-off")
+    const [secondValue, setSecondValue] = useState(false)
+    const [vsState, setVsState] = useState(0)
+    const [score, setScore] = useState(0)
 
     // eslint-disable-next-line
-    useEffect(() => fetchFighters(mode), [mode]);
+    useEffect(() => fetchFighters(Number(mode)), [mode])
 
     const checkComparison = (res) => {
-        setSecondValue(true);
-        if ((res === "more" && parseInt(fighters[currentFighter - 2].value) <= parseInt(fighters[currentFighter - 1].value)) ||
-            (res === "less" && parseInt(fighters[currentFighter - 2].value) >= parseInt(fighters[currentFighter - 1].value))) {
-            setClassTransition("transition-on");
-            setVsState(1);
+        setSecondValue(true)
+        if ((res === "more" && fighters[currentFighter - 2].value <= fighters[currentFighter - 1].value) ||
+            (res === "less" && fighters[currentFighter - 2].value >= fighters[currentFighter - 1].value)) {
+            setClassTransition("transition-on")
+            setVsState(1)
             setTimeout(() => {
-                setSecondValue(false);
-                setClassTransition("transition-off");
+                setSecondValue(false)
+                setClassTransition("transition-off")
 
-                setCurrentFighter((currentFighter < fighters.length - 1) ? currentFighter + 1 : 2);
-                setVsState(0);
-                setScore(score + 1);
-            }, 1500);
+                setCurrentFighter((currentFighter < fighters.length - 1) ? currentFighter + 1 : 2)
+                setVsState(0)
+                setScore(score + 1)
+            }, 1500)
         } else {
-            setVsState(2);
-            setTimeout(() => history.push({ pathname: '/gameover', score, game: mode }), 1500);
+            setVsState(2)
+            setTimeout(() => history.push({ pathname: '/gameover', score, game: mode }), 1500)
         }
     }
 
@@ -120,6 +120,6 @@ const Container = styled.div`
             height: 150%;
         }
     }
-`;
+`
 
-export default Game;
+export default Game

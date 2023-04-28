@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import gamesInfo from './../Const/Games'
+import gamesInfo from '../Const/Games'
 
 const useFightersManagements = () => {
 
