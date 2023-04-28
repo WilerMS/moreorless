@@ -4,8 +4,8 @@ import Categories from './pages/Categories'
 import GameOver from './pages/GameOver'
 import Home from './pages/Home'
 
-import './App.css';
-import {BrowserRouter,Route, Switch} from 'react-router-dom';
+import './App.css'
+import {BrowserRouter,Route, Switch} from 'react-router-dom'
 
 const App = () => {
   return (
@@ -23,4 +23,4 @@ const App = () => {
 }
 
 
-export default App;
+export default App

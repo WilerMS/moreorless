@@ -29,11 +29,23 @@ const Container = styled.div`
       text-align: center;
       margin: 5px 0;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+
+      &:hover {
+        background: #ffffff1c;
+        transform: scale(1.1);
+      }
     }
 
-    .more:hover, .less:hover {
-      background: #ffffff1c;
-      transform: scale(1.1);
+    .more:after, .less:after {
+      content: '';
+      position: absolute;
+      background: white;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 100%;
     }
 `;
 

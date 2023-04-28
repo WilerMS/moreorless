@@ -1,0 +1,5 @@
+export { default as  GuessBox } from './GuessBox'
+export { default as Fighter } from './Fighter'
+export { default as Score } from './Score'
+export { default as VS } from './Vs'
+export { default as HighScore } from './HighScore'

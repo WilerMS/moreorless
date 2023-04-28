@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router'
 import styled from 'styled-components'
-import Linked from '../Components/Linked'
+import Linked from '../Components/Button'
 
 import wallpaper from './../Images/gameover.png'
 
@@ -17,12 +17,8 @@ const GameOver = () => {
                     <span className="score">Your score was {score}</span>
                 </div>
                 <div className="options">
-                    <Linked to={`/game/${game}`} className="random">
-                        <span>VOLVER A JUGAR</span>
-                    </Linked>
-                    <Linked to={'/'} className="categories">
-                        <span>VOLVER AL INICIO</span>
-                    </Linked>
+                    <Linked path={`/game/${game}`} text="VOLVER A JUGAR"/>
+                    <Linked path={'/'} text="VOLVER AL INICIO"/>
                 </div>
             </div>
         </Container>

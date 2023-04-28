@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
+
+import Linked from './../Components/Button'
 import wallpaper from './../Images/fondo_ibaiquiz.jpg'
 import logo from './../Images/logo_ibaiquiz.png'
 
@@ -15,15 +16,8 @@ const Home = () => {
                     <img src={logo} alt="More or less logo" />
                 </div>
                 <div className="options">
-                    <Linked to={`/game/1`} className="random">
-                        
-                        <div className="bg_white"></div>
-                        <span>ALEATORIO</span>
-                    </Linked>
-                    <Linked to={'/categories'} className="categories">
-                        <span>MÁS JUEGOS</span>
-                        <div className="bg_white"></div>
-                    </Linked>
+                    <Linked path={`/game/1`} text="ALEATORIO"/>
+                    <Linked path={'/categories'} text="MÁS JUEGOS"/>
                 </div>
             </div>
             
@@ -96,56 +90,8 @@ const Container = styled.div`
             gap: 20px;
         }
     }
-
-    
-
     
 `;
-
-const Linked = styled(Link)`
-display: flex;
-justify-content: center;
-    text-decoration: none;
-    padding: 10px 0;
-    transition: all .5s ease;
-    font-size: 20px !important;
-    border: 2px solid white;
-    border-radius: 15px;
-    width: 30%;
-    height: 30px;
-    text-align: center;
-    color: white;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-
-    &:hover {
-        transform: scale(1.1);
-        color: black;
-
-        .bg_white {
-
-            top: 0;
-            opacity: 1;
-
-        }
-    }
-    
-    span {
-        z-index: 99;
-        position: absolute;
-    }
-
-    .bg_white {
-        transition: all .5s ease;
-        position: absolute;
-        background: white;
-        width: 100%;
-        height: 100%;
-        top: 100%;
-        opacity: 0;
-    }
-`; 
 
 
 export default Home;
