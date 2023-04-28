@@ -39,10 +39,12 @@
         $messages = array();
         $errors = array();
 
-        // Creating a new game with given data
-        if (isset($_POST['game'])) {
+        $_data = json_decode(file_get_contents("php://input"), true);
 
-            $sql = $game->create($_POST['game']);
+        // Creating a new game with given data
+        if (isset($_data['game'])) {
+
+            $sql = $game->create($_data['game']);
 
                 if (!$sql) {
                     header("HTTP/1.1 500 ERROR");
@@ -50,18 +52,22 @@
                     die();
                 }
             
-                foreach ($_POST['game']['fighters'] as $key => $value) {
-                    $sql = $fighter->create($value);
-                    if (!$sql) {$errors[] = $value;}
-                }
+                // foreach ($_data['game']['fighters'] as $key => $value) {
+                //     $sql = $fighter->create($value);
+                //     if (!$sql) {$errors[] = $value;}
+                // }
 
             $messages['game'] = "¡Genial, se ha creado tu juego correctamente!";
-            $messages['errors'] = $errors;
+            // $messages['errors'] = $errors;
 
             header("HTTP/1.1 200 OK");
             echo json_encode($messages);
             die();
         }
+
+        header("HTTP/1.1 422 ERROR");
+        echo json_encode(["Faltan datos", $_data]);
+        die();
 
     } else if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
@@ -74,15 +80,18 @@
                 die();
             }
         }
+
         header("HTTP/1.1 200 OK");
         echo json_encode("Juego eliminado satisfactoriamente");
         die(); 
 
     } else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
-        if (isset($_POST['game'])) {
+        $_data = json_decode(file_get_contents("php://input"), true);
+
+        if (isset($_data['game'])) {
             //Updating the current fighter id
-            $sql = $game->update($_POST['game']);
+            $sql = $game->update($_data['game']);
 
             // Error Throw exception
             if (!$sql) {
@@ -91,15 +100,17 @@
                 die();
             }
 
-        }
+            $messages['game'] = "¡Genial, se ha creado tu juego correctamente!";
 
-        header("HTTP/1.1 200 OK");
-        echo json_encode();
-        die();
+            header("HTTP/1.1 200 OK");
+            echo json_encode($messages);
+            die();
+
+        }
         
     }
 
     header("HTTP/1.1 500 ERROR");
-    echo json_encode(["El peleador se ha editado correctamente."]);
+    echo json_encode(["Petición no permitida.", $_POST]);
     die();
 ?>
